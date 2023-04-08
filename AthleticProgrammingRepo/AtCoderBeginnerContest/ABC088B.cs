@@ -9,7 +9,7 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
         // {
         //     Execute();
         // }
-        //
+        
         private static void Execute()
         {
             var inputCount = int.Parse(Console.ReadLine());
