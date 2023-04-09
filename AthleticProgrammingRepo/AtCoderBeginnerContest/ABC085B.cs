@@ -12,11 +12,11 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
 
         static void Execute()
         {
-            var inputCount = int.Parse(Console.ReadLine());
+            var inputCount = int.Parse(Console.ReadLine() ?? string.Empty);
             var input = new int[inputCount];
             for (int i = 0; i < input.Length; i++)
             {
-                input[i] = int.Parse(Console.ReadLine());
+                input[i] = int.Parse(Console.ReadLine() ?? string.Empty);
             }
             Console.WriteLine(CountKagamiMochiLayers(input));
         }
