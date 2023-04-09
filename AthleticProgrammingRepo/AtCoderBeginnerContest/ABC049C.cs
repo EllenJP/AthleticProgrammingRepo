@@ -13,35 +13,46 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
         static void Execute()
         {
             var S = Console.ReadLine();
-            Console.WriteLine(CheckStringEquality(S));
+            Console.WriteLine(CheckStringMatch(S));
         }
 
-        static string CheckStringEquality(string S)
+        private static string CheckStringMatch(string S)
         {
-            var addStrings = new string[] { "dream", "dreamer", "erase", "eraser" };
-            // TODO: 末尾に追加する文字列とSをリバースする。
+            var addStrings = new string[]
+            {
+                "dream",
+                "dreamer",
+                "erase",
+                "eraser",
+            };
+            
+            // TODO: SとaddStringsを逆順にする。
             var reverseS = new string(S.Reverse().ToArray());
             var reverseAddStrings = new string[addStrings.Length];
             for (int i = 0; i < addStrings.Length; i++)
             {
                 reverseAddStrings[i] = new String(addStrings[i].Reverse().ToArray());
             }
-
-            int index = 0;
+            
+            // TODO: reverseSの先頭からreverseAddStringsの要素をマッチするか判定する。マッチすればindexを進めて、全てマッチしなければNOを出力。
+            var index = 0;
             while (index < reverseS.Length)
             {
-                // TODO: 先頭要素から追加文字列の文字数分で比較する。
                 var isMatch = false;
                 foreach (var reverseAddString in reverseAddStrings)
                 {
-                    if (reverseS.Length - index >= reverseAddString.Length && reverseS.Substring(index, reverseAddString.Length) == reverseAddString)
+                    // TODO: 残りの文字数が比較文字列よりも少ない場合はスキップする。
+                    if (reverseS.Length - index < reverseAddString.Length)
+                        continue;
+                    // TODO: index位置からの文字列と比較文字列が等しい場合は、indexを更新する。
+                    if (reverseS.Substring(index, reverseAddString.Length) == reverseAddString)
                     {
                         index += reverseAddString.Length;
                         isMatch = true;
                         break;
                     }
                 }
-
+                
                 // TODO: 全ての要素で一致しなければNOを返す。
                 if (!isMatch)
                 {
