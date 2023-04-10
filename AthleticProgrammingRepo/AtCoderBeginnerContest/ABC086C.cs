@@ -35,9 +35,7 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
                 // TODO: 時間差による移動量が座標間の距離以上か？ && あまりの移動量が2で割り切れるか？
                 var isMatch = (timeDifference >= distanceDifference) && (timeDifference - distanceDifference) % 2 == 0;
                 if (!isMatch)
-                {
                     return "No";
-                }
             }
             return "Yes";
         }
