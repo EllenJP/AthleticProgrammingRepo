@@ -12,13 +12,99 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
 
         private static void Execute()
         {
-            // var inputCount = int.Parse(Console.ReadLine());
-            // var input = Console.ReadLine().Split(' ').Select(x => int.Parse(x)).ToArray();
-            // var input = Console.ReadLine();
-        
-            var input = Console.ReadLine().Split(' ').Select(x => int.Parse(x)).ToArray();
-            var ans = SumOfDigitFromAToB(input[0], input[1], input[2]);
+            // var inputCount = int.Parse(Console.ReadLine() ?? string.Empty);
+            // var input = (Console.ReadLine() ?? string.Empty).Split(' ').Select(x => int.Parse(x)).ToArray();
+            var input = Console.ReadLine();
+            // var input = new int[inputCount];
+            // for (int i = 0; i < inputCount; i++)
+            // {
+            //     input[i] = int.Parse(Console.ReadLine() ?? string.Empty);
+            // }
+
+            var ans = CheckStringMatch(input);
             Console.WriteLine($"{ans}");
+        }
+
+        private static string CheckStringMatch(string S)
+        {
+            var addStrings = new string[]
+            {
+                "dream",
+                "dreamer",
+                "erase",
+                "eraser",
+            };
+            
+            // TODO: SとaddStringsを逆順にする。
+            var reverseS = new string(S.Reverse().ToArray());
+            var reverseAddStrings = new string[addStrings.Length];
+            for (int i = 0; i < addStrings.Length; i++)
+            {
+                reverseAddStrings[i] = new String(addStrings[i].Reverse().ToArray());
+            }
+            
+            // TODO: reverseSの先頭からreverseAddStringsの要素をマッチするか判定する。マッチすればindexを進めて、全てマッチしなければNOを出力。
+            var index = 0;
+            while (index < reverseS.Length)
+            {
+                var isMatch = false;
+                foreach (var reverseAddString in reverseAddStrings)
+                {
+                    // TODO: 残りの文字数が比較文字列よりも少ない場合はスキップする。
+                    if (reverseS.Length - index < reverseAddString.Length)
+                        continue;
+                    // TODO: index位置からの文字列と比較文字列が等しい場合は、indexを更新する。
+                    if (reverseS.Substring(index, reverseAddString.Length) == reverseAddString)
+                    {
+                        index += reverseAddString.Length;
+                        isMatch = true;
+                        break;
+                    }
+                }
+                
+                // TODO: 全ての要素で一致しなければNOを返す。
+                if (!isMatch)
+                {
+                    return "NO";
+                }
+            }
+
+            return "YES";
+        }
+        
+
+        private static string CalculateMoneyCombinations(int N, int Y)
+        {
+            for (int x = 0; x <= N; x++)
+            {
+                for (int y = 0; y <= N - x; y++)
+                {
+                    var z = N - x - y;
+                    if (10000 * x + 5000 * y + 1000 * z == Y)
+                        return $"{x} {y} {z}";
+                }
+            }
+
+            return "-1 -1 -1";
+        }
+        
+        private static int CountKagamiMochiLayer(int[] input)
+        {
+            var layerCount = input.Distinct().Count();
+            return layerCount;
+        }
+        
+        private static int CalculatePointDifference(int[] input)
+        {
+            // TODO: カードをソートして降順に並べる
+            Array.Sort(input);
+            Array.Reverse(input);
+            // TODO: 偶数の添え字で合計を出す。
+            var alicePoint = input.Where((_, index) => index % 2 == 0).Sum();
+            // TODO: 奇数の添え字で合計を出す。
+            var bobPoint = input.Where((_, index) => index % 2 != 0).Sum();
+
+            return alicePoint - bobPoint;
         }
 
         private static int SumOfDigitFromAToB(int N, int A, int B)
