@@ -13,9 +13,9 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
         static void Execute()
         {
             var inputCount = int.Parse(Console.ReadLine() ?? string.Empty);
-            var points = new Point[inputCount];
+            var points = new Point[inputCount + 1];
             points[0] = new Point(0, 0, 0);
-            for (int i = 1; i < inputCount; i++)
+            for (int i = 1; i <= inputCount; i++)
             {
                 var input = (Console.ReadLine() ?? String.Empty).Split(' ').Select(int.Parse).ToArray();
                 points[i] = new Point(input[0], input[1], input[2]);
@@ -31,11 +31,15 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
                 // TODO: 前後の時刻差を求める。
                 var timeDifference = points[i + 1].T - points[i].T;
                 // TODO: 前後の座標における距離を求める。
-                var distanceDifference = Math.Abs(points[i + 1].X - points[i].X) - (points[i + 1].X - points[i].X);
-                // TODO: 時間差による移動量と座標間の距離がマッチするか    
+                var distanceDifference = Math.Abs(points[i + 1].X - points[i].X) + Math.Abs(points[i + 1].Y - points[i].Y);
+                // TODO: 時間差による移動量が座標間の距離以上か？ && あまりの移動量が2で割り切れるか？
+                var isMatch = (timeDifference >= distanceDifference) && (timeDifference - distanceDifference) % 2 == 0;
+                if (!isMatch)
+                {
+                    return "No";
+                }
             }
-            
-            
+            return "Yes";
         }
     }
 
