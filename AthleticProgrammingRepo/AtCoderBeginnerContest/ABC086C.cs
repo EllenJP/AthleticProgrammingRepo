@@ -5,10 +5,10 @@ namespace AthleticProgrammingRepo.AtCoderBeginnerContest
 {
     public static class ABC086C
     {
-        static void Main(string[] args)
-        {
-            Execute();
-        }
+        // static void Main(string[] args)
+        // {
+        //     Execute();
+        // }
 
         static void Execute()
         {
