@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace AthleticProgrammingRepo.AtCoderBeginnerContest.SimilarQuestion
 {
